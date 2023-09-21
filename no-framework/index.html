@@ -10,15 +10,12 @@
   </head>
   <body>
     <div class="container" id="app">
-
       <div class="columns">
         <div class="column">
           <h1 class="title is-1">A special page</h1>
           <h2 class="subtitle">A very special page</h2>
         </div>
-        <div class="column"></div>
       </div>
-
       <div class="columns">
         <div class="column">
           <div class="card">
@@ -97,7 +94,7 @@
           </article>
         </div>
         <div class="column">
-          <div class="notification is-success is-light":class="x.type" v-for="x in list" v-show="x.open">
+          <div class="notification is-light" :class="x.type" v-for="x in list" v-show="x.open">
               <button class="delete" @click="x.open = false"></button>
               {{ x.msg }}
           </div>
