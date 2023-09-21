@@ -9,9 +9,16 @@
       <link rel="stylesheet" href="main.css">
   </head>
   <body>
-    <div class="container">
-      <h1 class="title is-1">A special page</h1>
-      <h2 class="subtitle">A very special page</h2>
+    <div class="container" id="app">
+
+      <div class="columns">
+        <div class="column">
+          <h1 class="title is-1">A special page</h1>
+          <h2 class="subtitle">A very special page</h2>
+        </div>
+        <div class="column"></div>
+      </div>
+
       <div class="columns">
         <div class="column">
           <div class="card">
@@ -90,12 +97,34 @@
           </article>
         </div>
         <div class="column">
-          <div class="notification is-success is-light">
-              <button class="delete"></button>
-              <strong>Congrats!</strong> This is a primary notification
+          <div class="notification is-success is-light":class="x.type" v-for="x in list" v-show="x.open">
+              <button class="delete" @click="x.open = false"></button>
+              {{ x.msg }}
           </div>
         </div>
       </div>
     </div>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+
+      const { createApp, ref } = Vue;
+
+      const app = createApp({
+        setup() {
+          const list = ref([
+            { msg: 'Hello World!', open: true, type: 'is-success' },
+            { msg: 'Congrats you did it!', open: true, type: 'is-warning' },
+            { msg: 'You are a Vue master!', open: true, type: 'is-info' },
+            { msg: 'Oops, you did it again!', open: true, type: 'is-danger' },
+          ]);
+          return {
+            list
+          }
+        }
+      })
+
+      app.mount('#app');
+
+    </script>
   </body>
 </html>
