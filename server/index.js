@@ -1,10 +1,20 @@
 //vanilla node server
-const http = require('http');
+//const: never change the value of const
+//let: can change the value of let, but scope is limited to the block
+//var: can change the value of var, scope is bigger than let
+const express = require('express');
+const app = express();
 
-const server = http.createServer((req, res) => {
-    res.end('Hello World\n');
+const PORT = 3000;
+
+app.get('/', (req, res) => {
+    res.send('Hello World!');
 });
 
-server.listen(4242, () => {
-    console.log('Server is running...');
+console.log('1: Trying to start server...');
+
+app.listen(PORT, () => {
+    console.log(`2: Server is running at http://localhost:${PORT}`);
 });
+
+console.log('3: End of file, waiting for requests');
