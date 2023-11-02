@@ -1,0 +1,16 @@
+###
+POST https://dummyjson.com/products/add
+Content-Type: application/json
+
+{
+  "name": "Pumpkin",
+  "price": 1.99,
+  "description": "A pumpkin",
+  "thumbnail": "https://dummyimage.com/400x400/000/fff&text=pumpkin"
+}
+
+###
+http://localhost:3000
+
+###
+http://localhost:3000/api/v1/products

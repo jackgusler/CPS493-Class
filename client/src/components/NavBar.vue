@@ -2,12 +2,15 @@
 import { ref } from "vue";
 import { RouterLink } from "vue-router";
 import LoginBadge from "./LoginBadge.vue";
+import FlyoutPanel from "./FlyoutPanel.vue";
+import ShoppingCart from "./ShoppingCart.vue";
 
 const isActive = ref(false);
+const isShoppingCartOpen = ref(false);
+
 </script>
 
 <template>
-  <div>
     <nav class="navbar" role="navigation" aria-label="main navigation">
       <div class="navbar-brand">
         <a class="navbar-item" href="https://bulma.io">
@@ -57,15 +60,23 @@ const isActive = ref(false);
             </div>
           </div>
         </div>
-
         <div class="navbar-end">
+          <div class="navbar-item">
+            <a class="button" :class="{'is-active': isShoppingCartOpen}" @click.prevent="isShoppingCartOpen = !isShoppingCartOpen">
+              <span class="icon">
+                <i class="fas fa-shopping-cart"></i>
+              </span>
+            </a>
+          </div>
           <div class="navbar-item">
             <LoginBadge />
           </div>
         </div>
       </div>
     </nav>
-  </div>
+  <FlyoutPanel :class="{'is-active': isShoppingCartOpen}">
+    <ShoppingCart />
+  </FlyoutPanel>
 </template>
 
 <style scoped>
