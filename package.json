@@ -5,7 +5,7 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "build": "cd client && npm install && npm run build",
+    "build": "npm i --production && cd client && npm i && npm run build",
     "start": "node server/index.js",
     "dev": "nodemon --watch ./server server/index.js"
   },
