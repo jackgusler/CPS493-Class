@@ -14,3 +14,25 @@ http://localhost:3000
 
 ###
 http://localhost:3000/api/v1/products
+
+###
+POST http://localhost:3000/api/v1/products
+Content-Type: application/json
+
+{
+  "id": 101,
+  "title": "Pumpkin",
+  "price": 1.99,
+}
+
+###
+PATCH http://localhost:3000/api/v1/products/31
+Content-Type: application/json
+
+{
+  "title": "Pumpkin Spice Latte",
+  "price": 2.99,
+}
+
+###
+https://jackgusler-cps493-class-webservice.onrender.com/api/v1/products/28
