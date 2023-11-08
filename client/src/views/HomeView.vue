@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { getUsers, type User } from "@/model/users";
 import { ref } from "vue";
 
 const newTask = ref("");
@@ -20,6 +21,12 @@ const shouldDisplay = (task: {
   (tabState.value == "Current" && !task.completed) ||
   (tabState.value == "Completed" && task.completed) ||
   tabState.value == "All";
+
+  const users = ref([] as User[])
+  getUsers().then((data) => {
+    users.value = data
+  })
+
 </script>
 
 <template>
@@ -67,6 +74,9 @@ const shouldDisplay = (task: {
             Reset all filters
           </button>
         </div>
+      </div>
+      <div class="box" v-for="user in users" :key="user.id">
+        {{ user.firstName }} {{ user.lastName }}
       </div>
     </div>
   </main>
