@@ -16,9 +16,9 @@ const session = reactive({
   loading: 0
 })
 
-export function api(action: string){
+export function api(action: string, body?: unknown, method?: string){
   session.loading++
-  return myFetch.api(`${action}`)
+  return myFetch.api(`${action}`, body, method)
     .catch(err=> showError(err))
     .finally(()=> session.loading--)
 }
@@ -37,16 +37,9 @@ export function useLogin(){
   const router = useRouter()
   return {
     async login(email: string, password: string): Promise< User | null> {
-      const user = await getUserByEmail(email)
-      
-      if(user && user.password === password){
-        session.user = user
-
-        router.push(session.redirectUrl || "/");
-
-        return user
-      }
-      return null
+      session.user = await api("users/login", { email, password })
+      router.push(session.redirectUrl || "/")
+      return session.user
     },
     logout(){
       session.user = null
