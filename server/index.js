@@ -2,11 +2,16 @@
 
 const path = require('path')
 const express = require('express');
+require('dotenv').config();
 const productController = require('./controllers/products');
 const userController = require('./controllers/users');
 const app = express();
 
-const PORT = 3000;
+const mongo = require('./models/mongo');
+
+const PORT = process.env.PORT ?? 3000;
+
+console.log(`The best class at SUNY New Paltz is ${process.env.BEST_CLASS}`);
 
 app
     .use('/', express.static(path.join( __dirname, '../client/dist/') ) )
