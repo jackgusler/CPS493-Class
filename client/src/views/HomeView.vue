@@ -18,11 +18,6 @@ import { ref } from 'vue';
     (tabState.value == 'Completed' && task.completed) ||
     tabState.value == 'All';
 
-  const users = ref([] as User[] );
-  getUsers().then((data) => {
-    users.value = data;
-  });
-
 </script>
 
 <template>
@@ -60,9 +55,6 @@ import { ref } from 'vue';
             Reset all filters
           </button>
         </div>
-      </div>
-      <div class="box" v-for="user in users" :key="user.id">
-        {{ user.firstName }} {{ user.lastName }}
       </div>
     </div>
   </main>

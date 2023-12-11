@@ -1,31 +1,30 @@
 <script setup lang="ts">
-import { getSession, useLogin } from "@/model/session";
+  import { getSession, useLogin } from '@/model/session'
 
-const session = getSession();
-const { login, logout } = useLogin();
+  const session = getSession()
+  const { login, googleLogin, logout } = useLogin()
 
-const doLogin = () => {
-  login("hbingley1@plala.or.jp", "CQutx25i8r1")
-}
+  const doLogin = () => {
+    login('hbingley1@plala.or.jp', 'CQutx25i8r')
+  }
 
-const doLogout = () => {
-  logout()
-}
+  const doGoogleLogin = () => {
+    googleLogin()
+  }
 
-let user: any = {
-  firstName: "John",
-  lastName: "Doe",
-  email: "john@doe.com",
-};
-//user = null
+  const doLogout = () => {
+    logout();
+  }
+
+
 </script>
 
 <template>
   <div class="has-text-right" v-if="session.user">
-    Welcome, {{ session.user.firstName }} {{ session.user.lastName }}! <br />
+    Welcome, {{ session.user.firstName }} {{ session.user.lastName }} <br>
     <small>
       {{ session.user.email }}
-      <a href="" class="button is-small is-warning" @click.prevent="doLogout">
+      <a class="button is-small is-light is-warning" @click.prevent="doLogout">
         <span class="icon">
           <i class="fas fa-sign-out-alt"></i>
         </span>
@@ -36,8 +35,19 @@ let user: any = {
     <a class="button is-primary">
       <strong>Sign up</strong>
     </a>
-    <a class="button is-light" @click.prevent="doLogin"> Log in </a>
+    <a class="button is-light" @click.prevent="doLogin">
+      Log in
+    </a>
+    <a class="button is-primary" @click.prevent="doGoogleLogin">
+      <span class="icon">
+        <i class="fab fa-google"></i>
+      </span>
+      Google Log in
+    </a>
   </div>
 </template>
 
-<style scoped></style>
+
+<style scoped>
+
+</style>
